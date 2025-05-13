@@ -31,12 +31,20 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
+      position: relative;
     }
 
     .image-wrapper img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      position: absolute;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .image-wrapper img.active {
+      opacity: 1;
     }
 
     .message {
@@ -53,10 +61,16 @@
   <h1>Selamat ulang tahun papa</h1>
 
   <div class="image-wrapper">
-    <img src="1.png" alt="Foto papa">
+    <img src="1.png" alt="Foto papa" class="slide active">
+    <img src="2.png" alt="Foto papa" class="slide">
+    <img src="3.png" alt="Foto papa" class="slide">
+    <img src="4.png" alt="Foto papa" class="slide">
+    <img src="5.png" alt="Foto papa" class="slide">
+    <img src="6.png" alt="Foto papa" class="slide">
+    <img src="7.png" alt="Foto papa" class="slide">
   </div>
 
-  <div class="message">
+  <div class="message" id="message">
     Terima kasih sudah menjadi ayah yang luar biasa. Doa kami selalu menyertaimu,<br>
     Semoga panjang umur, sehat selalu, dan penuh berkah dalam setiap langkah,<br>
     Engkau adalah pahlawan dalam hidup kami yang tak pernah lelah berjuang,<br>
@@ -65,5 +79,27 @@
     Kami bangga punya sosok sekuat dan sebaik Papa dalam hidup kami.<br>
     Selamat ulang tahun, Papa! Kami mencintaimu tanpa batas waktu.
   </div>
+
+  <script>
+    const slides = document.querySelectorAll('.image-wrapper img');
+    const messages = [
+      "Terima kasih sudah menjadi ayah yang luar biasa. Doa kami selalu menyertaimu.",
+      "Semoga panjang umur, sehat selalu, dan penuh berkah dalam setiap langkah.",
+      "Engkau adalah pahlawan dalam hidup kami yang tak pernah lelah berjuang.",
+      "Di hari spesial ini, semoga semua impian dan harapan Papa tercapai.",
+      "Terima kasih atas cinta, pengorbanan, dan ketulusan yang tak ternilai.",
+      "Kami bangga punya sosok sekuat dan sebaik Papa dalam hidup kami.",
+      "Selamat ulang tahun, Papa! Kami mencintaimu tanpa batas waktu."
+    ];
+    const messageDiv = document.getElementById('message');
+    let current = 0;
+
+    setInterval(() => {
+      slides[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+      messageDiv.innerHTML = messages[current].split('. ').join('<br>') + '.';
+    }, 4000);
+  </script>
 </body>
 </html>
