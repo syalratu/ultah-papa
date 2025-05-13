@@ -55,10 +55,15 @@
       line-height: 1.6;
       font-weight: bold;
     }
+
+    .initial-message {
+      font-size: 1.2em;
+      font-weight: normal;
+    }
   </style>
 </head>
 <body>
-  <h1>Selamat ulang tahun papa</h1>
+  <h1>Selamat ulang tahun Papa</h1>
 
   <div class="image-wrapper">
     <img src="1.png" alt="Foto papa" class="slide active">
@@ -71,14 +76,16 @@
   </div>
 
   <div class="message" id="message">
-    Selamat ulang tahun, Papa!<br>
-Terima kasih karena selalu ada buat kami—bukan cuma sebagai orang tua, tapi juga sebagai guru kehidupan.<br>
-Dari nasihat-nasihat kecil sampai obrolan serius, semuanya selalu nempel di kepala.<br>
-Papa ngajarin kami buat nggak gampang nyerah, buat mikir sebelum bertindak, dan buat jadi orang yang bisa diandalkan.<br>
-Kadang caranya simpel, kadang cuma lewat contoh sehari-hari, tapi justru itu yang bikin kami ngerti banyak hal.<br>
-Semoga Papa selalu sehat, bahagia, dan terus jadi sumber semangat di rumah.<br>
-Kami bersyukur punya Papa yang bijak tapi tetap asik.<br>
-Selamat ulang tahun sekali lagi, Pa. Terima kasih untuk semuanya!
+    <div class="initial-message">
+      Selamat ulang tahun, Papa!<br>
+      Terima kasih karena selalu ada buat kami—bukan cuma sebagai orang tua, tapi juga sebagai guru kehidupan.<br>
+      Dari nasihat-nasihat kecil sampai obrolan serius, semuanya selalu nempel di kepala.<br>
+      Papa ngajarin kami buat nggak gampang nyerah, buat mikir sebelum bertindak, dan buat jadi orang yang bisa diandalkan.<br>
+      Kadang caranya simpel, kadang cuma lewat contoh sehari-hari, tapi justru itu yang bikin kami ngerti banyak hal.<br>
+      Semoga Papa selalu sehat, bahagia, dan terus jadi sumber semangat di rumah.<br>
+      Kami bersyukur punya Papa yang bijak tapi tetap asik.<br>
+      Selamat ulang tahun sekali lagi, Pa. Terima kasih untuk semuanya!
+    </div>
   </div>
 
   <script>
@@ -95,6 +102,12 @@ Selamat ulang tahun sekali lagi, Pa. Terima kasih untuk semuanya!
     const messageDiv = document.getElementById('message');
     let current = 0;
 
+    // Timer untuk menghilangkan pesan awal setelah beberapa detik
+    setTimeout(() => {
+      document.querySelector('.initial-message').style.display = 'none';
+    }, 6000);  // Pesan awal hilang setelah 6 detik
+
+    // Timer untuk mengganti gambar dan pesan setelahnya
     setInterval(() => {
       slides[current].classList.remove('active');
       current = (current + 1) % slides.length;
