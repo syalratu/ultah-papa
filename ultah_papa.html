@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Selamat Ulang Tahun Papa!</title>
+    <style>
+        body {
+            background-color: #fff8e1;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #e91e63;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+        .image-container img {
+            max-width: 300px;
+            margin: 10px;
+            opacity: 0;
+            animation: fadein 1s ease-in forwards;
+        }
+
+        .image-container img:nth-child(1) {
+            animation-delay: 0s;
+        }
+    
+        .image-container img:nth-child(2) {
+            animation-delay: 2s;
+        }
+    
+        .image-container img:nth-child(3) {
+            animation-delay: 4s;
+        }
+    
+        .image-container img:nth-child(4) {
+            animation-delay: 6s;
+        }
+    
+        .image-container img:nth-child(5) {
+            animation-delay: 8s;
+        }
+    
+        .image-container img:nth-child(6) {
+            animation-delay: 10s;
+        }
+    
+        .image-container img:nth-child(7) {
+            animation-delay: 12s;
+        }
+    
+        @keyframes fadein {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <h1>Selamat Ulang Tahun Papa!</h1>
+    <p>Semoga sehat selalu, bahagia, dan panjang umur!</p>
+    <div class="image-container">
+        <img src="1.png" alt="Animasi 1.png">
+        <img src="2.png" alt="Animasi 2.png">
+        <img src="3.png" alt="Animasi 3.png">
+        <img src="4.png" alt="Animasi 4.png">
+        <img src="5.png" alt="Animasi 5.png">
+        <img src="6.png" alt="Animasi 6.png">
+        <img src="7.png" alt="Animasi 7.png">
+
+    </div>
+</body>
+</html>
