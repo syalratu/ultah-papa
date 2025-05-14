@@ -27,12 +27,11 @@
       max-height: 500px;
       background-color: #eee;
       border: 2px solid #d33;
-      display: flex;
+      display: none; /* awalnya disembunyikan */
       align-items: center;
       justify-content: center;
       overflow: hidden;
       position: relative;
-      display: none; /* disembunyikan dulu */
     }
 
     .image-wrapper img {
@@ -63,7 +62,7 @@
     }
 
     #nextBtn {
-      margin-top: 20px;
+      margin: 20px auto;
       padding: 10px 20px;
       font-size: 1em;
       background-color: #ff7f50;
@@ -82,18 +81,8 @@
 <body>
   <h1>Selamat ulang tahun Papa</h1>
 
-  <div class="image-wrapper" id="imageWrapper">
-    <img src="1.png" alt="Foto papa" class="slide active">
-    <img src="2.png" alt="Foto papa" class="slide">
-    <img src="3.png" alt="Foto papa" class="slide">
-    <img src="4.png" alt="Foto papa" class="slide">
-    <img src="5.png" alt="Foto papa" class="slide">
-    <img src="6.png" alt="Foto papa" class="slide">
-    <img src="7.png" alt="Foto papa" class="slide">
-  </div>
-
   <div class="message" id="message">
-    <div class="initial-message" id="initialMsg">
+    <div class="initial-message">
       Selamat ulang tahun, Papa!<br>
       Terima kasih karena selalu ada buat kami—bukan cuma sebagai orang tua, tapi juga sebagai guru kehidupan.<br>
       Dari nasihat-nasihat kecil sampai obrolan serius, semuanya selalu nempel di kepala.<br>
@@ -107,9 +96,19 @@
 
   <button id="nextBtn">Lanjut</button>
 
+  <div class="image-wrapper">
+    <img src="1.png" alt="Foto papa" class="slide active">
+    <img src="2.png" alt="Foto papa" class="slide">
+    <img src="3.png" alt="Foto papa" class="slide">
+    <img src="4.png" alt="Foto papa" class="slide">
+    <img src="5.png" alt="Foto papa" class="slide">
+    <img src="6.png" alt="Foto papa" class="slide">
+    <img src="7.png" alt="Foto papa" class="slide">
+  </div>
+
   <script>
     const slides = document.querySelectorAll('.image-wrapper img');
-    const imageWrapper = document.getElementById('imageWrapper');
+    const imageWrapper = document.querySelector('.image-wrapper');
     const messages = [
       "Terima kasih sudah menjadi ayah yang luar biasa. Doa kami selalu menyertaimu.",
       "Semoga panjang umur, sehat selalu, dan penuh berkah dalam setiap langkah.",
@@ -121,7 +120,7 @@
     ];
     const messageDiv = document.getElementById('message');
     const nextBtn = document.getElementById('nextBtn');
-    const initialMsg = document.getElementById('initialMsg');
+    const initialMsg = document.querySelector('.initial-message');
     let current = 0;
 
     nextBtn.addEventListener('click', () => {
