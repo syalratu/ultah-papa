@@ -17,8 +17,6 @@
       margin-top: 40px;
       font-size: 2em;
       color: #3e3e3e;
-      opacity: 0;
-      animation: fadeInUp 1s ease-out forwards;
     }
 
     .image-wrapper {
@@ -34,8 +32,7 @@
       justify-content: center;
       overflow: hidden;
       position: relative;
-      animation: fadeInUp 1s ease-out forwards;
-      animation-delay: 0.5s;
+      display: none; /* disembunyikan dulu */
     }
 
     .image-wrapper img {
@@ -44,12 +41,11 @@
       object-fit: cover;
       position: absolute;
       opacity: 0;
-      transition: opacity 1s ease-in-out, transform 0.5s ease;
+      transition: opacity 1s ease-in-out;
     }
 
     .image-wrapper img.active {
       opacity: 1;
-      transform: scale(1.03);
     }
 
     .message {
@@ -59,9 +55,6 @@
       font-size: 1.1em;
       line-height: 1.6;
       font-weight: bold;
-      opacity: 0;
-      animation: fadeInUp 1s ease-out forwards;
-      animation-delay: 1s;
     }
 
     .initial-message {
@@ -69,22 +62,27 @@
       font-weight: normal;
     }
 
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    #nextBtn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1em;
+      background-color: #ff7f50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #nextBtn:hover {
+      background-color: #e9683d;
     }
   </style>
 </head>
 <body>
   <h1>Selamat ulang tahun Papa</h1>
 
-  <div class="image-wrapper">
+  <div class="image-wrapper" id="imageWrapper">
     <img src="1.png" alt="Foto papa" class="slide active">
     <img src="2.png" alt="Foto papa" class="slide">
     <img src="3.png" alt="Foto papa" class="slide">
@@ -95,7 +93,7 @@
   </div>
 
   <div class="message" id="message">
-    <div class="initial-message">
+    <div class="initial-message" id="initialMsg">
       Selamat ulang tahun, Papa!<br>
       Terima kasih karena selalu ada buat kami—bukan cuma sebagai orang tua, tapi juga sebagai guru kehidupan.<br>
       Dari nasihat-nasihat kecil sampai obrolan serius, semuanya selalu nempel di kepala.<br>
@@ -107,8 +105,11 @@
     </div>
   </div>
 
+  <button id="nextBtn">Lanjut</button>
+
   <script>
     const slides = document.querySelectorAll('.image-wrapper img');
+    const imageWrapper = document.getElementById('imageWrapper');
     const messages = [
       "Terima kasih sudah menjadi ayah yang luar biasa. Doa kami selalu menyertaimu.",
       "Semoga panjang umur, sehat selalu, dan penuh berkah dalam setiap langkah.",
@@ -119,20 +120,22 @@
       "Selamat ulang tahun, Papa! Kami mencintaimu tanpa batas waktu."
     ];
     const messageDiv = document.getElementById('message');
+    const nextBtn = document.getElementById('nextBtn');
+    const initialMsg = document.getElementById('initialMsg');
     let current = 0;
 
-    // Hilangkan pesan awal setelah 15 detik
-    setTimeout(() => {
-      document.querySelector('.initial-message').style.display = 'none';
-    }, 15000);
+    nextBtn.addEventListener('click', () => {
+      initialMsg.style.display = 'none';
+      nextBtn.style.display = 'none';
+      imageWrapper.style.display = 'flex';
 
-    // Slide show dan pesan dinamis
-    setInterval(() => {
-      slides[current].classList.remove('active');
-      current = (current + 1) % slides.length;
-      slides[current].classList.add('active');
-      messageDiv.innerHTML = messages[current].split('. ').join('<br>') + '.';
-    }, 4000);
+      setInterval(() => {
+        slides[current].classList.remove('active');
+        current = (current + 1) % slides.length;
+        slides[current].classList.add('active');
+        messageDiv.innerHTML = messages[current].split('. ').join('<br>') + '.';
+      }, 4000);
+    });
   </script>
 </body>
 </html>
