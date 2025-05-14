@@ -20,14 +20,14 @@
     }
 
     .image-wrapper {
-      margin: 40px auto 20px;
+      margin: 30px auto 10px;
       width: 80vmin;
       height: 80vmin;
       max-width: 500px;
       max-height: 500px;
       background-color: #eee;
       border: 2px solid #d33;
-      display: none; /* awalnya disembunyikan */
+      display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
@@ -48,53 +48,28 @@
     }
 
     .message {
-      margin: 0 auto;
-      padding: 0 20px 40px;
-      max-width: 700px;
-      font-size: 1.1em;
-      line-height: 1.6;
+      font-size: 2em;
       font-weight: bold;
+      margin: 20px auto 60px;
+      max-width: 700px;
+      padding: 0 20px;
+      line-height: 1.4;
     }
 
-    .initial-message {
-      font-size: 1.2em;
-      font-weight: normal;
-    }
-
-    #nextBtn {
-      margin: 20px auto;
+    #nextButton {
       padding: 10px 20px;
       font-size: 1em;
-      background-color: #ff7f50;
+      margin-top: 20px;
+      background-color: #d33;
       color: white;
       border: none;
-      border-radius: 8px;
+      border-radius: 6px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    #nextBtn:hover {
-      background-color: #e9683d;
     }
   </style>
 </head>
 <body>
   <h1>Selamat ulang tahun Papa</h1>
-
-  <div class="message" id="message">
-    <div class="initial-message">
-      Selamat ulang tahun, Papa!<br>
-      Terima kasih karena selalu ada buat kami—bukan cuma sebagai orang tua, tapi juga sebagai guru kehidupan.<br>
-      Dari nasihat-nasihat kecil sampai obrolan serius, semuanya selalu nempel di kepala.<br>
-      Papa ngajarin kami buat nggak gampang nyerah, buat mikir sebelum bertindak, dan buat jadi orang yang bisa diandalkan.<br>
-      Kadang caranya simpel, kadang cuma lewat contoh sehari-hari, tapi justru itu yang bikin kami ngerti banyak hal.<br>
-      Semoga Papa selalu sehat, bahagia, dan terus jadi sumber semangat di rumah.<br>
-      Kami bersyukur punya Papa yang bijak tapi tetap asik.<br>
-      Selamat ulang tahun sekali lagi, Pa. Terima kasih untuk semuanya!
-    </div>
-  </div>
-
-  <button id="nextBtn">Lanjut</button>
 
   <div class="image-wrapper">
     <img src="1.png" alt="Foto papa" class="slide active">
@@ -106,34 +81,33 @@
     <img src="7.png" alt="Foto papa" class="slide">
   </div>
 
+  <div class="message" id="message">
+    Di hari spesial ini, semoga semua impian dan harapan Papa tercapai..
+  </div>
+
+  <button id="nextButton">Next</button>
+
   <script>
-    const slides = document.querySelectorAll('.image-wrapper img');
-    const imageWrapper = document.querySelector('.image-wrapper');
+    const slides = document.querySelectorAll('.slide');
     const messages = [
+      "Di hari spesial ini, semoga semua impian dan harapan Papa tercapai..",
       "Terima kasih sudah menjadi ayah yang luar biasa. Doa kami selalu menyertaimu.",
       "Semoga panjang umur, sehat selalu, dan penuh berkah dalam setiap langkah.",
       "Engkau adalah pahlawan dalam hidup kami yang tak pernah lelah berjuang.",
       "Di hari spesial ini, semoga semua impian dan harapan Papa tercapai.",
       "Terima kasih atas cinta, pengorbanan, dan ketulusan yang tak ternilai.",
-      "Kami bangga punya sosok sekuat dan sebaik Papa dalam hidup kami.",
-      "Selamat ulang tahun, Papa! Kami mencintaimu tanpa batas waktu."
+      "Kami bangga punya sosok sekuat dan sebaik Papa dalam hidup kami."
     ];
-    const messageDiv = document.getElementById('message');
-    const nextBtn = document.getElementById('nextBtn');
-    const initialMsg = document.querySelector('.initial-message');
+
     let current = 0;
+    const messageDiv = document.getElementById('message');
+    const nextButton = document.getElementById('nextButton');
 
-    nextBtn.addEventListener('click', () => {
-      initialMsg.style.display = 'none';
-      nextBtn.style.display = 'none';
-      imageWrapper.style.display = 'flex';
-
-      setInterval(() => {
-        slides[current].classList.remove('active');
-        current = (current + 1) % slides.length;
-        slides[current].classList.add('active');
-        messageDiv.innerHTML = messages[current].split('. ').join('<br>') + '.';
-      }, 4000);
+    nextButton.addEventListener('click', () => {
+      slides[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+      messageDiv.innerHTML = messages[current];
     });
   </script>
 </body>
